@@ -1,22 +1,28 @@
 <script lang="ts">
+  export let guesses: string[];
   export let currentGuess: string;
+  export let numAttempts: number;
+
   const rows = { length: 6 };
   const cells = { length: 5 };
 </script>
 
 <main>
   <section class="board">
-    {#each rows as _, i}
-      <div class="board-row">
-        {#each cells as _, j}
-          <div class="board-cell">
-            {#if i === 0 && currentGuess.length - 1 >= j}
-              {currentGuess[j].toUpperCase()}
-            {/if}
-          </div>
-        {/each}
-      </div>
-    {/each}
+    {#key guesses}
+      {#each rows as _, i}
+        <div class="board-row">
+          {#each cells as _, j}
+            <div class="board-cell">
+              {#if i === numAttempts && currentGuess.length - 1 >= j}
+                {currentGuess[j].toUpperCase()}
+              {/if}
+              {guesses?.[i]?.[j].toUpperCase() ?? ""}
+            </div>
+          {/each}
+        </div>
+      {/each}
+    {/key}
   </section>
 </main>
 

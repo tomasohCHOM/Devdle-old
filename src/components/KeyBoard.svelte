@@ -3,7 +3,6 @@
 
   const keys = ["qwertyuiop", "asdfghjkl", "<zxcvbnm>"];
   const clickKey = (key: string) => {
-    console.log(key);
     if (key == "<") {
       currentGuess = currentGuess.slice(0, currentGuess.length - 1);
     } else if (key == ">" && currentGuess.length === 5) {
