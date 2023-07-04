@@ -1,4 +1,5 @@
 <script lang="ts">
+  export let currentGuess: string;
   const rows = { length: 6 };
   const cells = { length: 5 };
 </script>
