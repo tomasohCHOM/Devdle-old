@@ -1,19 +1,17 @@
 <script lang="ts">
+  export let currentGuess: string;
+
   const keys = ["qwertyuiop", "asdfghjkl", "<zxcvbnm>"];
   const clickKey = (key: string) => {
-    if (key == "<") key = "Backspace";
-    if (key == ">") key = "Enter";
-  };
-
-  let keycolors = {};
-  function updateKeyboard(colors) {
-    for (let i of Object.keys(colors)) {
-      for (let j of colors[i]) {
-        keycolors[j] = i;
-      }
+    console.log(key);
+    if (key == "<") {
+      currentGuess = currentGuess.slice(0, currentGuess.length - 1);
+    } else if (key == ">" && currentGuess.length === 5) {
+      currentGuess = "";
+    } else {
+      currentGuess = currentGuess + key.toUpperCase();
     }
-    keycolors = keycolors;
-  }
+  };
 </script>
 
 <main>
@@ -22,7 +20,7 @@
     <div class="row">
       {#each key as letter}
         <button
-          class="keyboard-key ${keycolors[letter]}"
+          class="keyboard-key"
           on:click={() => {
             clickKey(letter);
           }}

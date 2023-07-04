@@ -7,7 +7,6 @@
   let secretWord: string = "";
   let guesses: string[] = Array(6).fill(null);
   let currentGuess: string = "";
-
   onMount(async () => {
     secretWord = words[Math.floor(Math.random() * words.length)];
     const handleKeyType = (event: KeyboardEvent) => {
@@ -23,8 +22,7 @@
 
 <main>
   <h1>Devdle</h1>
-  <Board {currentGuess} />
+  <Board bind:currentGuess />
   <div>{secretWord}</div>
-  <div>{currentGuess}</div>
-  <KeyBoard />
+  <KeyBoard bind:currentGuess />
 </main>
