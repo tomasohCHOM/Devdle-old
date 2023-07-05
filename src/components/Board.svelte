@@ -16,8 +16,9 @@
             <div class="board-cell">
               {#if i === numAttempts && currentGuess.length - 1 >= j}
                 {currentGuess[j].toUpperCase()}
+              {:else}
+                {guesses?.[i]?.[j].toUpperCase() ?? ""}
               {/if}
-              {guesses?.[i]?.[j].toUpperCase() ?? ""}
             </div>
           {/each}
         </div>

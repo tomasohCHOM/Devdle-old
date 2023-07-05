@@ -1,12 +1,15 @@
 <script lang="ts">
   export let currentGuess: string;
+  // export let numAttempts: number;
+  // export let isGameOver: boolean;
+  // export let handleSubmit: () => void;
 
   const keys = ["qwertyuiop", "asdfghjkl", "<zxcvbnm>"];
   const clickKey = (key: string) => {
     if (key == "<") {
-      currentGuess = currentGuess.slice(0, currentGuess.length - 1);
+      currentGuess = currentGuess.slice(0, -1);
     } else if (key == ">" && currentGuess.length === 5) {
-      currentGuess = "";
+      console.log(key);
     } else {
       currentGuess = currentGuess + key.toUpperCase();
     }
