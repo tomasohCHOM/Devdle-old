@@ -11,9 +11,13 @@
   let numAttempts: number = 0;
   let isGameOver: boolean = false;
 
+  let popOver: HTMLDivElement;
+
   const handleSubmit = (): void => {
     guesses = [...guesses, currentGuess];
     if (currentGuess === secretWord || guesses.length === 6) {
+      popOver.style.visibility = "visible";
+      popOver.style.opacity = "1";
       isGameOver = true;
     } else {
       currentGuess = "";
@@ -42,23 +46,39 @@
     <h1 class="lg-header">DEVDLE</h1>
   </header>
 
-  <!-- {isGameOver && currentGuess === secretWord
-    ? WIN_MESSAGES[guesses.length - 1]
-    : ""} -->
+  <div bind:this={popOver} class="pop-over">
+    <div class="win-message">
+      {isGameOver && currentGuess === secretWord
+        ? WIN_MESSAGES[guesses.length - 1]
+        : ""}
+    </div>
+  </div>
+
   <Board bind:guesses bind:currentGuess bind:numAttempts />
   <div>{secretWord}</div>
-  <div>
-    {isGameOver
-      ? currentGuess === secretWord
-        ? "Noice"
-        : "YAHH LAWWST"
-      : "Game in progress"}
-  </div>
   <KeyBoard bind:currentGuess />
 </main>
 
 <style>
   .lg-header {
     font-family: var(--ff-custom);
+  }
+  main {
+    position: relative;
+  }
+  .pop-over {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 13.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.125s ease-in;
+  }
+  .win-message {
+    background-color: var(--color-correct);
+    color: #ffffff;
+    padding: 0.5rem 0.5rem;
+    border-radius: 0.25rem;
   }
 </style>
