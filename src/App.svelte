@@ -26,15 +26,6 @@
           popOver.style.visibility = "hidden";
         }, 250);
       }, 2000);
-
-      // new Promise ((resolve, reject) => {
-      //   setTimeout(() => {
-      //   popOver.style.opacity = "0";
-      //   resolve("Yo");
-      // }, 2000).then(result => {
-      //   popOver.style.visibility = "hidden";
-      // })
-      // })
     } else {
       currentGuess = "";
       numAttempts++;
@@ -89,7 +80,7 @@
     top: 13.5%;
     left: 50%;
     transform: translate(-50%, -50%);
-    transition: opacity 0.125s ease-in;
+    transition: opacity 0.125s ease-in-out;
   }
   .win-message {
     background-color: var(--color-correct);
