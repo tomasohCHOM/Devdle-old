@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import words from "./constants/words.json";
+  import words from "./constants/answersList.json";
   import { WIN_MESSAGES } from "./constants/strings";
   import Board from "./components/Board.svelte";
   import KeyBoard from "./components/KeyBoard.svelte";
@@ -16,9 +16,25 @@
   const handleSubmit = (): void => {
     guesses = [...guesses, currentGuess];
     if (currentGuess === secretWord || guesses.length === 6) {
+      isGameOver = true;
       popOver.style.visibility = "visible";
       popOver.style.opacity = "1";
-      isGameOver = true;
+
+      setTimeout(() => {
+        popOver.style.opacity = "0";
+        setTimeout(() => {
+          popOver.style.visibility = "hidden";
+        }, 250);
+      }, 2000);
+
+      // new Promise ((resolve, reject) => {
+      //   setTimeout(() => {
+      //   popOver.style.opacity = "0";
+      //   resolve("Yo");
+      // }, 2000).then(result => {
+      //   popOver.style.visibility = "hidden";
+      // })
+      // })
     } else {
       currentGuess = "";
       numAttempts++;
