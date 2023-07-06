@@ -49,6 +49,7 @@
           popOver.style.visibility = "hidden";
         }, 250);
       }, 2000);
+      currentGuess = "";
     } else {
       currentGuess = "";
       numAttempts++;
@@ -97,6 +98,7 @@
 <style>
   .lg-header {
     font-family: var(--ff-custom);
+    letter-spacing: -0.125rem;
   }
   main {
     position: relative;

@@ -17,7 +17,9 @@
             <div
               class="board-cell {guesses[i] !== undefined
                 ? colorsFromGuesses[i][j]
-                : ''}"
+                : ''} {i === guesses.length &&
+                currentGuess[j] !== undefined &&
+                'border-active'}"
             >
               {#if i === numAttempts && currentGuess.length - 1 >= j}
                 {currentGuess[j].toUpperCase()}
@@ -46,9 +48,12 @@
     justify-content: center;
     width: 3.5rem;
     aspect-ratio: 1;
-    border: 2px solid gray;
+    border: 2px solid var(--border-empty);
     font-size: 1.5rem;
     font-weight: bold;
+  }
+  .border-active {
+    border: 2px solid var(--border-active);
   }
   .correct {
     background-color: var(--color-correct);
