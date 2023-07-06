@@ -7,14 +7,37 @@
 
   let secretWord: string = "";
   let guesses: string[] = [];
+  let colorsFromGuesses: string[] = [];
   let currentGuess: string = "";
   let numAttempts: number = 0;
   let isGameOver: boolean = false;
 
   let popOver: HTMLDivElement;
 
+  const getColorsFromGuess = (
+    guessedWords: string[],
+    attempts: number
+  ): void => {
+    // Represented by letters (G, Y, B) - G = Correct, Y = Present, B = Absent.
+    let colors = "";
+    let guess = guessedWords[attempts];
+    for (let i = 0; i < guess.length; i++) {
+      let char = guess[i];
+      if (char === secretWord[i]) {
+        colors += "G";
+      } else if (secretWord.includes(char)) {
+        colors += "Y";
+      } else {
+        colors += "B";
+      }
+    }
+    colorsFromGuesses = [...colorsFromGuesses, colors];
+  };
+
   const handleSubmit = (): void => {
     guesses = [...guesses, currentGuess];
+    getColorsFromGuess(guesses, numAttempts);
+
     if (currentGuess === secretWord || guesses.length === 6) {
       isGameOver = true;
       popOver.style.visibility = "visible";
@@ -57,11 +80,16 @@
     <div class="win-message">
       {isGameOver && currentGuess === secretWord
         ? WIN_MESSAGES[guesses.length - 1]
-        : ""}
+        : secretWord}
     </div>
   </div>
 
-  <Board bind:guesses bind:currentGuess bind:numAttempts />
+  <Board
+    bind:guesses
+    bind:colorsFromGuesses
+    bind:currentGuess
+    bind:numAttempts
+  />
   <div>{secretWord}</div>
   <KeyBoard bind:currentGuess />
 </main>
