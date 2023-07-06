@@ -11,6 +11,7 @@
   let currentGuess: string = "";
   let numAttempts: number = 0;
   let isGameOver: boolean = false;
+  let gameOverMessage: string = "";
 
   let popOver: HTMLDivElement;
 
@@ -40,6 +41,10 @@
 
     if (currentGuess === secretWord || guesses.length === 6) {
       isGameOver = true;
+      if (currentGuess === secretWord) {
+        gameOverMessage = WIN_MESSAGES[numAttempts];
+      }
+      currentGuess = "";
       popOver.style.visibility = "visible";
       popOver.style.opacity = "1";
 
@@ -49,7 +54,6 @@
           popOver.style.visibility = "hidden";
         }, 250);
       }, 2000);
-      currentGuess = "";
     } else {
       currentGuess = "";
       numAttempts++;
@@ -79,9 +83,11 @@
 
   <div bind:this={popOver} class="pop-over">
     <div class="win-message">
-      {isGameOver && currentGuess === secretWord
-        ? WIN_MESSAGES[guesses.length - 1]
-        : secretWord}
+      {#if gameOverMessage !== ""}
+        {gameOverMessage}
+      {:else}
+        {secretWord}
+      {/if}
     </div>
   </div>
 
@@ -107,13 +113,13 @@
     visibility: hidden;
     opacity: 0;
     position: absolute;
-    top: 13.5%;
+    top: 17.5%;
     left: 50%;
     transform: translate(-50%, -50%);
     transition: opacity 0.125s ease-in-out;
   }
   .win-message {
-    background-color: var(--color-correct);
+    background-color: var(--color-muted);
     color: #ffffff;
     padding: 0.5rem 0.5rem;
     border-radius: 0.25rem;
