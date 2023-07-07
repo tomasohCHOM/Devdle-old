@@ -6,6 +6,20 @@
 
   const NUM_ROWS = { length: 6 };
   const cells = { length: 5 };
+
+  const convertColorsToCSSColorClasses = (i: number, j: number): string => {
+    switch (colorsFromGuesses[i][j]) {
+      case "G":
+        return "correct";
+      case "Y":
+        return "present";
+      case "B":
+        return "absent";
+      default:
+        break;
+    }
+    return;
+  };
 </script>
 
 <main>
@@ -16,7 +30,7 @@
           {#each cells as _, j}
             <div
               class="board-cell {guesses[i] !== undefined
-                ? colorsFromGuesses[i][j]
+                ? convertColorsToCSSColorClasses(i, j)
                 : ''} {i === guesses.length &&
                 currentGuess[j] !== undefined &&
                 'border-active'}"
@@ -58,26 +72,14 @@
   .correct {
     background-color: var(--color-correct);
     color: white;
+    border: none;
   }
   .present {
     background-color: var(--color-present);
     color: white;
+    border: none;
   }
   .absent {
-    background-color: var(--color-absent);
-    color: white;
-  }
-  .G {
-    background-color: var(--color-correct);
-    color: white;
-    border: none;
-  }
-  .Y {
-    background-color: var(--color-present);
-    color: white;
-    border: none;
-  }
-  .B {
     background-color: var(--color-absent);
     color: white;
     border: none;

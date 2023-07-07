@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import words from "./constants/answersList.json";
+  import setCharAt from "./constants/utils";
   import { WIN_MESSAGES } from "./constants/strings";
   import Board from "./components/Board.svelte";
   import KeyBoard from "./components/KeyBoard.svelte";
@@ -20,19 +21,27 @@
     attempts: number
   ): void => {
     // Represented by letters (G, Y, B) - G = Correct, Y = Present, B = Absent.
-    let colors = "";
+    let result = "BBBBB";
+    let answer = secretWord;
     let guess = guessedWords[attempts];
+
     for (let i = 0; i < guess.length; i++) {
-      let char = guess[i];
-      if (char === secretWord[i]) {
-        colors += "G";
-      } else if (secretWord.includes(char)) {
-        colors += "Y";
-      } else {
-        colors += "B";
+      if (guess[i] === answer[i]) {
+        // Calling our utility function to replace characters at specified indices.
+        result = setCharAt(result, i, "G");
+        answer = setCharAt(answer, i, "$");
       }
     }
-    colorsFromGuesses = [...colorsFromGuesses, colors];
+    for (let i = 0; i < guess.length; i++) {
+      if (answer.includes(guess[i])) {
+        let correctIndex: number = answer.indexOf(guess[i]);
+        if (result[i] != "G") {
+          result = setCharAt(result, i, "Y");
+          answer = setCharAt(answer, correctIndex, "$");
+        }
+      }
+    }
+    colorsFromGuesses = [...colorsFromGuesses, result];
   };
 
   const handleSubmit = (): void => {
