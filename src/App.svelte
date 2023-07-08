@@ -5,6 +5,14 @@
   import { WIN_MESSAGES } from "./constants/strings";
   import Board from "./components/Board.svelte";
   import KeyBoard from "./components/KeyBoard.svelte";
+  import githubLogo from "./assets/images/github-logo.png";
+
+  interface SecretWord {
+    word: string;
+    description: string;
+    descriptiveImage: string;
+    supplementalImage: string;
+  }
 
   let secretWord: string = "";
   let guesses: string[] = [];
@@ -78,6 +86,10 @@
     if (event.key >= "a" && event.key <= "z") currentGuess += event.key;
   };
 
+  const toggleTheme = (): void => {
+    document.body.classList.toggle("dark-mode");
+  };
+
   window.addEventListener("keydown", handleKeyType);
 
   onMount(async () => {
@@ -86,8 +98,12 @@
 </script>
 
 <main>
-  <header>
+  <header class="navbar">
+    <a href="https://github.com/tomasohCHOM/MatriXpert">
+      <img src={githubLogo} alt="hamburger" class="icon-images" />
+    </a>
     <h1 class="lg-header">DEVDLE</h1>
+    <button on:click={toggleTheme}>Dark Mode</button>
   </header>
 
   <div bind:this={popOver} class="pop-over">
@@ -111,6 +127,11 @@
 </main>
 
 <style>
+  .navbar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
   .lg-header {
     font-family: var(--ff-custom);
     letter-spacing: -0.125rem;
@@ -128,7 +149,7 @@
     transition: opacity 0.125s ease-in-out;
   }
   .win-message {
-    background-color: var(--color-muted);
+    background-color: var(--color-neutral-600);
     color: #ffffff;
     padding: 0.5rem 0.5rem;
     border-radius: 0.25rem;
