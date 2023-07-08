@@ -5,7 +5,7 @@
   import { WIN_MESSAGES } from "./constants/strings";
   import Board from "./components/Board.svelte";
   import KeyBoard from "./components/KeyBoard.svelte";
-  import githubLogo from "./assets/images/github-logo.png";
+  import Navbar from "./components/Navbar.svelte";
 
   interface SecretWord {
     word: string;
@@ -86,10 +86,6 @@
     if (event.key >= "a" && event.key <= "z") currentGuess += event.key;
   };
 
-  const toggleTheme = (): void => {
-    document.body.classList.toggle("dark-mode");
-  };
-
   window.addEventListener("keydown", handleKeyType);
 
   onMount(async () => {
@@ -98,13 +94,7 @@
 </script>
 
 <main>
-  <header class="navbar">
-    <a href="https://github.com/tomasohCHOM/MatriXpert">
-      <img src={githubLogo} alt="hamburger" class="icon-images" />
-    </a>
-    <h1 class="lg-header">DEVDLE</h1>
-    <button on:click={toggleTheme}>Dark Mode</button>
-  </header>
+  <Navbar />
 
   <div bind:this={popOver} class="pop-over">
     <div class="win-message">
@@ -127,15 +117,6 @@
 </main>
 
 <style>
-  .navbar {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-  .lg-header {
-    font-family: var(--ff-custom);
-    letter-spacing: -0.125rem;
-  }
   main {
     position: relative;
   }
