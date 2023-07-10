@@ -13,26 +13,43 @@
 </script>
 
 <header class="navbar">
-  <a href="https://github.com/tomasohCHOM/Devdle">
-    <img src={githubLogo} alt="hamburger" class="icon-images" />
-  </a>
-  <h1 class="lg-header">DEVDLE</h1>
-  <div class="theme-switch-wrapper">
-    <label class="theme-switch" for="checkbox">
-      <input on:click={toggleTheme} type="checkbox" id="checkbox" />
-      <div class="slider round" />
-    </label>
-    <em>Dark Mode</em>
-  </div>
+  <section class="navbar-section">
+    <a href="https://github.com/tomasohCHOM/Devdle">
+      <img src={githubLogo} alt="hamburger" class="icon-images" />
+    </a>
+  </section>
+  <section class="navbar-section">
+    <h1 class="lg-header">DEVDLE</h1>
+  </section>
+  <section class="navbar-section">
+    <div class="theme-switch-wrapper">
+      <label class="theme-switch" for="checkbox">
+        <input on:click={toggleTheme} type="checkbox" id="checkbox" />
+        <div class="slider round" />
+      </label>
+      <em>Dark Mode</em>
+      <div>Leaderboard</div>
+    </div>
+  </section>
 </header>
 
 <style lang="scss">
   .navbar {
     display: flex;
+    max-height: 4rem;
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid var(--border-active);
-    margin-block-end: 1rem;
+    margin-block-end: 2rem;
+    .navbar-section {
+      flex: 1;
+    }
+    &:first-child {
+      margin-right: auto;
+    }
+    &:last-child {
+      margin-left: auto;
+    }
   }
   .lg-header {
     font-family: var(--ff-custom);

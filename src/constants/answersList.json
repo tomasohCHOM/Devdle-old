@@ -8,4 +8,5 @@
  "loops", "child", "unity", "logic", "trees",
  "asset", "param", "mysql", "mount", "model",
  "break", "props", "rails", "equal", "value",
- "defer", "parse", "purge", "reset", "digit"]
+ "defer", "parse", "purge", "reset", "digit",
+ "enums"]

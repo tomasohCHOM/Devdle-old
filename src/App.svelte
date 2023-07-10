@@ -97,7 +97,7 @@
   <Navbar />
 
   <div bind:this={popOver} class="pop-over">
-    <div class="win-message">
+    <div class="game-over-message">
       {#if gameOverMessage !== ""}
         {gameOverMessage}
       {:else}
@@ -112,7 +112,7 @@
     bind:currentGuess
     bind:numAttempts
   />
-  <div>{secretWord}</div>
+
   <KeyBoard bind:currentGuess />
 </main>
 
@@ -124,14 +124,15 @@
     visibility: hidden;
     opacity: 0;
     position: absolute;
-    top: 17.5%;
+    top: 15%;
     left: 50%;
+    z-index: 5;
     transform: translate(-50%, -50%);
     transition: opacity 0.125s ease-in-out;
   }
-  .win-message {
-    background-color: var(--color-neutral-600);
-    color: var(--color-neutral-0);
+  .game-over-message {
+    background-color: var(--color-contrast);
+    color: var(--color-primary);
     padding: 0.5rem 0.5rem;
     border-radius: 0.25rem;
   }

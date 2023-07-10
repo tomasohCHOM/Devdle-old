@@ -77,19 +77,19 @@
   .correct {
     --background-color: var(--color-correct);
     background-color: var(--background-color);
-    color: #ffffff;
+    color: var(--color-true-white);
     border: none;
   }
   .present {
     --background-color: var(--color-present);
     background-color: var(--background-color);
-    color: #ffffff;
+    color: var(--color-true-white);
     border: none;
   }
   .absent {
     --background-color: var(--color-absent);
     background-color: var(--background-color);
-    color: #ffffff;
+    color: var(--color-true-white);
     border: none;
   }
   @keyframes cellPopUp {
@@ -99,15 +99,15 @@
   @keyframes flipCells {
     0% {
       transform: rotateX(0);
-      background-color: #ffffff;
+      background-color: var(--color-primary);
       border: 2px solid var(--border-active);
-      color: var(--color-neutral-600);
+      color: var(--color-contrast);
     }
     45% {
       transform: rotateX(90deg);
-      background-color: #ffffff;
+      background-color: var(--color-primary);
       border: 2px solid var(--border-active);
-      color: var(--color-neutral-600);
+      color: var(--color-contrast);
     }
     55% {
       transform: rotateX(90deg);
