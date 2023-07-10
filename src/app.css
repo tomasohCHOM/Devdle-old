@@ -8,7 +8,6 @@
 
   color-scheme: light dark;
   color: var(--color-neutral-600);
-  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -73,7 +72,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #ffffff;
+  border-color: var(--color-neutral-0);
 }
 
 .icon-images {
@@ -86,7 +85,8 @@ button:hover {
     brightness(99%) contrast(83%);
 }
 
-.dark-mode {
+[data-theme="dark"] {
   background-color: var(--color-neutral-600);
-  color: #ffffff;
+  color: var(--color-neutral-0);
+  transition: all 0.2s ease-in;
 }

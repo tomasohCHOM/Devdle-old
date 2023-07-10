@@ -131,7 +131,7 @@
   }
   .win-message {
     background-color: var(--color-neutral-600);
-    color: #ffffff;
+    color: var(--color-neutral-0);
     padding: 0.5rem 0.5rem;
     border-radius: 0.25rem;
   }
