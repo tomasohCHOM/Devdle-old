@@ -69,19 +69,55 @@
   .border-active {
     border: 2px solid var(--border-active);
   }
+  .correct,
+  .present,
+  .absent {
+    animation: flipCells 0.5s ease forwards;
+  }
   .correct {
-    background-color: var(--color-correct);
-    color: white;
+    --background-color: var(--color-correct);
+    background-color: var(--background-color);
+    color: #ffffff;
     border: none;
   }
   .present {
-    background-color: var(--color-present);
-    color: white;
+    --background-color: var(--color-present);
+    background-color: var(--background-color);
+    color: #ffffff;
     border: none;
   }
   .absent {
-    background-color: var(--color-absent);
-    color: white;
+    --background-color: var(--color-absent);
+    background-color: var(--background-color);
+    color: #ffffff;
     border: none;
+  }
+  @keyframes cellPopUp {
+    0% {
+    }
+  }
+  @keyframes flipCells {
+    0% {
+      transform: rotateX(0);
+      background-color: #ffffff;
+      border: 2px solid var(--border-active);
+      color: var(--color-neutral-600);
+    }
+    45% {
+      transform: rotateX(90deg);
+      background-color: #ffffff;
+      border: 2px solid var(--border-active);
+      color: var(--color-neutral-600);
+    }
+    55% {
+      transform: rotateX(90deg);
+      background-color: var(--background-color);
+      border: none;
+    }
+    100% {
+      transform: rotateX(0deg);
+      background-color: var(--background-color);
+      border: none;
+    }
   }
 </style>
