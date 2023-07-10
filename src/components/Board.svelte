@@ -24,27 +24,26 @@
 
 <main>
   <section class="board">
-    {#key guesses}
-      {#each NUM_ROWS as _, i}
-        <div class="board-row">
-          {#each cells as _, j}
-            <div
-              class="board-cell {guesses[i] !== undefined
-                ? convertColorsToCSSColorClasses(i, j)
-                : ''} {i === guesses.length &&
-                currentGuess[j] !== undefined &&
-                'border-active'}"
-            >
-              {#if i === numAttempts && currentGuess.length - 1 >= j}
-                {currentGuess[j].toUpperCase()}
-              {:else}
-                {guesses[i]?.[j].toUpperCase() ?? ""}
-              {/if}
-            </div>
-          {/each}
-        </div>
-      {/each}
-    {/key}
+    {#each NUM_ROWS as _, i}
+      <div class="board-row">
+        {#each cells as _, j}
+          <div
+            class="board-cell {guesses[i] !== undefined
+              ? convertColorsToCSSColorClasses(i, j)
+              : ''} {i === guesses.length &&
+              currentGuess[j] !== undefined &&
+              'border-active'}"
+            style="--order: {j}"
+          >
+            {#if i === numAttempts && currentGuess.length - 1 >= j}
+              {currentGuess[j].toUpperCase()}
+            {:else}
+              {guesses[i]?.[j].toUpperCase() ?? ""}
+            {/if}
+          </div>
+        {/each}
+      </div>
+    {/each}
   </section>
 </main>
 
@@ -73,6 +72,7 @@
   .present,
   .absent {
     animation: flipCells 0.5s ease forwards;
+    animation-delay: calc(var(--order) * 200ms);
   }
   .correct {
     --background-color: var(--color-correct);
