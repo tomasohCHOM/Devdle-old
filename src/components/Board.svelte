@@ -67,6 +67,7 @@
   }
   .border-active {
     border: 2px solid var(--border-active);
+    animation: cellPopUp 0.1s ease-in-out;
   }
   .correct,
   .present,
@@ -76,24 +77,30 @@
   }
   .correct {
     --background-color: var(--color-correct);
-    background-color: var(--background-color);
-    color: var(--color-true-white);
-    border: none;
+    --color: var(--color-true-white);
+    border: 2px solid var(--border-active);
   }
   .present {
     --background-color: var(--color-present);
-    background-color: var(--background-color);
-    color: var(--color-true-white);
-    border: none;
+    --color: var(--color-true-white);
+    border: 2px solid var(--border-active);
   }
   .absent {
     --background-color: var(--color-absent);
-    background-color: var(--background-color);
-    color: var(--color-true-white);
-    border: none;
+    --color: var(--color-true-white);
+    border: 2px solid var(--border-active);
   }
   @keyframes cellPopUp {
     0% {
+      transform: scale(0.95);
+      border-color: var(--border-pop);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+      border-color: var(--border-active);
     }
   }
   @keyframes flipCells {
@@ -112,11 +119,13 @@
     55% {
       transform: rotateX(90deg);
       background-color: var(--background-color);
+      color: var(--color);
       border: none;
     }
     100% {
       transform: rotateX(0deg);
       background-color: var(--background-color);
+      color: var(--color);
       border: none;
     }
   }
