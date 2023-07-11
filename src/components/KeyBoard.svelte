@@ -44,4 +44,10 @@
     background-color: #e9e9e9;
     margin: 0.125rem;
   }
+  @media screen and (max-width: 36em) {
+    .keyboard-key {
+      padding: 0.3em 0.6em;
+      font-size: 1rem;
+    }
+  }
 </style>

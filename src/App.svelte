@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import words from "./constants/answersList.json";
+  import { ANSWER_LIST } from "./constants/answersList";
+  import { VALID_GUESSES } from "./constants/validGuesses";
   import setCharAt from "./constants/utils";
   import { WIN_MESSAGES } from "./constants/strings";
   import Board from "./components/Board.svelte";
@@ -52,7 +53,25 @@
     colorsFromGuesses = [...colorsFromGuesses, result];
   };
 
+  const triggerPopOver = (): void => {
+    popOver.style.visibility = "visible";
+    popOver.style.opacity = "1";
+
+    setTimeout(() => {
+      popOver.style.opacity = "0";
+      setTimeout(() => {
+        popOver.style.visibility = "hidden";
+      }, 250);
+    }, 2000);
+  };
+
   const handleSubmit = (): void => {
+    if (
+      !(VALID_GUESSES.has(currentGuess) || ANSWER_LIST.includes(currentGuess))
+    ) {
+      console.error("Invalid guess");
+      return;
+    }
     guesses = [...guesses, currentGuess];
     getColorsFromGuess(guesses, numAttempts);
 
@@ -62,15 +81,7 @@
         gameOverMessage = WIN_MESSAGES[numAttempts];
       }
       currentGuess = "";
-      popOver.style.visibility = "visible";
-      popOver.style.opacity = "1";
-
-      setTimeout(() => {
-        popOver.style.opacity = "0";
-        setTimeout(() => {
-          popOver.style.visibility = "hidden";
-        }, 250);
-      }, 2000);
+      triggerPopOver();
     } else {
       currentGuess = "";
       numAttempts++;
@@ -89,7 +100,8 @@
   window.addEventListener("keydown", handleKeyType);
 
   onMount(async () => {
-    secretWord = words[Math.floor(Math.random() * words.length)];
+    secretWord = ANSWER_LIST[Math.floor(Math.random() * ANSWER_LIST.length)];
+    console.log(secretWord);
   });
 </script>
 
@@ -97,13 +109,11 @@
   <Navbar />
 
   <div bind:this={popOver} class="pop-over">
-    <div class="game-over-message">
-      {#if gameOverMessage !== ""}
-        {gameOverMessage}
-      {:else}
-        {secretWord}
-      {/if}
-    </div>
+    {#if gameOverMessage !== ""}
+      {gameOverMessage}
+    {:else}
+      {secretWord}
+    {/if}
   </div>
 
   <Board
@@ -129,8 +139,6 @@
     z-index: 5;
     transform: translate(-50%, -50%);
     transition: opacity 0.125s ease-in-out;
-  }
-  .game-over-message {
     background-color: var(--color-contrast);
     color: var(--color-primary);
     padding: 0.5rem 0.5rem;

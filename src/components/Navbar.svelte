@@ -18,7 +18,7 @@
       <img src={githubLogo} alt="hamburger" class="icon-images" />
     </a>
   </section>
-  <section class="navbar-section">
+  <section class="navbar-section title-section">
     <h1 class="lg-header">DEVDLE</h1>
   </section>
   <section class="navbar-section">
@@ -27,7 +27,6 @@
         <input on:click={toggleTheme} type="checkbox" id="checkbox" />
         <div class="slider round" />
       </label>
-      <em>Dark Mode</em>
       <div>Leaderboard</div>
     </div>
   </section>
@@ -37,40 +36,47 @@
   .navbar {
     display: flex;
     max-height: 4rem;
-    justify-content: space-between;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
     align-items: center;
     border-bottom: 2px solid var(--border-active);
+    padding: 0rem 1.25rem;
     margin-block-end: 2rem;
     .navbar-section {
       flex: 1;
+      &.title-section {
+        flex: 2;
+        justify-content: flex-start;
+      }
     }
-    &:first-child {
-      margin-right: auto;
+    & :first-child {
+      display: flex;
+      justify-content: flex-start;
     }
-    &:last-child {
-      margin-left: auto;
+    & :last-child {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
     }
   }
   .lg-header {
+    font-size: 3.2em;
+    line-height: 1.1;
     font-family: var(--ff-custom);
     letter-spacing: -0.125rem;
   }
   .theme-switch-wrapper {
     display: flex;
     align-items: center;
-    em {
-      margin-left: 10px;
-      font-size: 1rem;
-    }
   }
   .theme-switch {
     display: inline-block;
     height: 34px;
     position: relative;
     width: 60px;
-  }
-  .theme-switch input {
-    display: none;
+    &:input {
+      display: none;
+    }
   }
   .slider {
     background-color: #ccc;
@@ -104,5 +110,14 @@
   }
   .slider.round:before {
     border-radius: 50%;
+  }
+  @media screen and (max-width: 45em) {
+    .title-section {
+      display: flex;
+      justify-content: flex-start;
+    }
+    .lg-header {
+      font-size: 2.4em;
+    }
   }
 </style>
