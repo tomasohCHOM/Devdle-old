@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { ANSWER_LIST } from "./constants/answersList";
+  import { ANSWER_LIST, ANSWERS } from "./constants/answersList";
   import VALID_GUESSES from "./constants/validGuesses.json";
   import setCharAt from "./constants/utils";
   import { WIN_MESSAGES } from "./constants/strings";
@@ -10,14 +10,14 @@
 
   const validGuesses = new Set<string>(VALID_GUESSES);
 
-  interface SecretWord {
+  interface Secret {
     word: string;
     description: string;
     descriptiveImage: string;
     supplementalImage: string;
   }
 
-  let secretWord: string = "";
+  let secret: Secret;
   let guesses: string[] = [];
   let colorsFromGuesses: string[] = [];
   let currentGuess: string = "";
@@ -33,7 +33,7 @@
   ): void => {
     // Represented by letters (G, Y, B) - G = Correct, Y = Present, B = Absent.
     let result = "BBBBB";
-    let answer = secretWord;
+    let answer = secret.word;
     let guess = guessedWords[attempts];
 
     for (let i = 0; i < guess.length; i++) {
@@ -78,9 +78,9 @@
     guesses = [...guesses, currentGuess];
     getColorsFromGuess(guesses, numAttempts);
 
-    if (currentGuess === secretWord || guesses.length === 6) {
+    if (currentGuess === secret.word || guesses.length === 6) {
       isGameOver = true;
-      if (currentGuess === secretWord) {
+      if (currentGuess === secret.word) {
         gameOverMessage = WIN_MESSAGES[numAttempts];
       }
       currentGuess = "";
@@ -107,8 +107,8 @@
   window.addEventListener("keydown", handleKeyType);
 
   onMount(async () => {
-    secretWord = ANSWER_LIST[Math.floor(Math.random() * ANSWER_LIST.length)];
-    console.log(secretWord);
+    secret = ANSWERS[Math.floor(Math.random() * ANSWER_LIST.length)];
+    console.log(secret);
   });
 </script>
 
