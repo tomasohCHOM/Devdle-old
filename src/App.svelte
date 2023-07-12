@@ -26,6 +26,7 @@
   let isGameOver: boolean = false;
   let gameOverMessage: string = "";
 
+  $: isContainerOpen = false;
   let popOver: HTMLDivElement;
 
   const getColorsFromGuess = (
@@ -116,7 +117,16 @@
 <main>
   <Navbar />
 
-  <CoverContainer title={secret?.word} description={secret?.description} />
+  <button
+    style="border: 2px solid black;"
+    on:click={() => (isContainerOpen = !isContainerOpen)}>See Answer</button
+  >
+
+  <CoverContainer
+    title={secret?.word}
+    description={secret?.description}
+    bind:isOpen={isContainerOpen}
+  />
 
   <div bind:this={popOver} class="pop-over" />
 

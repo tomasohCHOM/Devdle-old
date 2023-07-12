@@ -1,28 +1,40 @@
 <script lang="ts">
   export let title: string = "Error: Failed to load secret word.";
   export let description: string = "Error: Failed to load description.";
+
+  export let isOpen: boolean;
+
+  const toggleContainer = () => {
+    isOpen = !isOpen;
+  };
 </script>
 
-<section class="cover-container">
+<section class="cover-container {isOpen === true ? 'active' : ''}">
   <h2>{title}</h2>
   <p>{description}</p>
 </section>
 
-<div class="full-window-overlay active" />
+<div
+  class="full-window-overlay {isOpen === true ? 'active' : ''}"
+  on:click={toggleContainer}
+  on:keydown={toggleContainer}
+/>
 
 <style lang="scss">
   .cover-container {
     position: fixed;
     left: 50%;
-    top: 50%;
-    width: 500px;
-    height: 500px;
+    top: 55%;
+    width: 30em;
     z-index: 4;
     padding: 1.25rem;
     background-color: var(--color-secondary);
     box-shadow: 0 3px 1rem rgba(16, 19, 21, 0.1);
     border-radius: 1rem;
+    opacity: 0;
+    visibility: hidden;
     transform: translate(-50%, -50%);
+    transition: all 0.125s ease-in;
 
     & h2 {
       margin: 0;
@@ -30,6 +42,12 @@
       font-size: 2rem;
       text-transform: uppercase;
       letter-spacing: -0.1rem;
+    }
+
+    &.active {
+      top: 50%;
+      opacity: 1;
+      visibility: visible;
     }
   }
 
