@@ -7,6 +7,7 @@
   import Board from "./components/Board.svelte";
   import KeyBoard from "./components/KeyBoard.svelte";
   import Navbar from "./components/Navbar.svelte";
+  import CoverContainer from "./components/CoverContainer.svelte";
 
   const validGuesses = new Set<string>(VALID_GUESSES);
 
@@ -114,6 +115,8 @@
 
 <main>
   <Navbar />
+
+  <CoverContainer title={secret?.word} description={secret?.description} />
 
   <div bind:this={popOver} class="pop-over" />
 
