@@ -46,7 +46,11 @@
       flex: 1;
       &.title-section {
         flex: 2;
-        justify-content: flex-start;
+        justify-content: center;
+
+        & h1 {
+          display: inline-block;
+        }
       }
     }
     & :first-child {

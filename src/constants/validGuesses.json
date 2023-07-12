@@ -1,4 +1,4 @@
-export const VALID_GUESSES = new Set<string>([
+[
   "aahed",
   "aalii",
   "aargh",
@@ -13110,5 +13110,5 @@ export const VALID_GUESSES = new Set<string>([
   "zygal",
   "zygon",
   "zymes",
-  "zymic",
-]);
+  "zymic"
+]

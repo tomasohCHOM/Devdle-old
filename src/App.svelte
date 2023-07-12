@@ -1,12 +1,14 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { ANSWER_LIST } from "./constants/answersList";
-  import { VALID_GUESSES } from "./constants/validGuesses";
+  import VALID_GUESSES from "./constants/validGuesses.json";
   import setCharAt from "./constants/utils";
   import { WIN_MESSAGES } from "./constants/strings";
   import Board from "./components/Board.svelte";
   import KeyBoard from "./components/KeyBoard.svelte";
   import Navbar from "./components/Navbar.svelte";
+
+  const validGuesses = new Set<string>(VALID_GUESSES);
 
   interface SecretWord {
     word: string;
@@ -53,7 +55,8 @@
     colorsFromGuesses = [...colorsFromGuesses, result];
   };
 
-  const triggerPopOver = (): void => {
+  const triggerPopOver = (message: string): void => {
+    popOver.textContent = message;
     popOver.style.visibility = "visible";
     popOver.style.opacity = "1";
 
@@ -67,9 +70,9 @@
 
   const handleSubmit = (): void => {
     if (
-      !(VALID_GUESSES.has(currentGuess) || ANSWER_LIST.includes(currentGuess))
+      !(validGuesses.has(currentGuess) || ANSWER_LIST.includes(currentGuess))
     ) {
-      console.error("Invalid guess");
+      triggerPopOver("Not a valid word");
       return;
     }
     guesses = [...guesses, currentGuess];
@@ -81,7 +84,7 @@
         gameOverMessage = WIN_MESSAGES[numAttempts];
       }
       currentGuess = "";
-      triggerPopOver();
+      triggerPopOver(gameOverMessage);
     } else {
       currentGuess = "";
       numAttempts++;
@@ -92,7 +95,11 @@
     if (isGameOver) return;
 
     if (event.key === "Backspace") currentGuess = currentGuess.slice(0, -1);
-    if (event.key === "Enter" && currentGuess.length === 5) handleSubmit();
+    if (event.key === "Enter") {
+      currentGuess.length === 5
+        ? handleSubmit()
+        : triggerPopOver("Not enough letters");
+    }
     if (currentGuess.length === 5) return;
     if (event.key >= "a" && event.key <= "z") currentGuess += event.key;
   };
@@ -108,13 +115,7 @@
 <main>
   <Navbar />
 
-  <div bind:this={popOver} class="pop-over">
-    {#if gameOverMessage !== ""}
-      {gameOverMessage}
-    {:else}
-      {secretWord}
-    {/if}
-  </div>
+  <div bind:this={popOver} class="pop-over" />
 
   <Board
     bind:guesses
