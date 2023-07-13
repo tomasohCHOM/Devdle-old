@@ -1,4 +1,6 @@
 <script lang="ts">
+  import closeWindow from "../assets/images/close-window.png";
+
   export let title: string = "Error: Failed to load secret word.";
   export let description: string = "Error: Failed to load description.";
 
@@ -10,7 +12,15 @@
 </script>
 
 <section class="cover-container {isOpen === true ? 'active' : ''}">
-  <h2>{title}</h2>
+  <div class="top-section">
+    <button class="placeholder"
+      ><img class="icon-images" src={closeWindow} alt="Placeholder" /></button
+    >
+    <h2>{title}</h2>
+    <button class="close-window-btn" on:click={toggleContainer}
+      ><img class="icon-images" src={closeWindow} alt="Close Window" /></button
+    >
+  </div>
   <p>{description}</p>
 </section>
 
@@ -48,6 +58,29 @@
       top: 50%;
       opacity: 1;
       visibility: visible;
+    }
+  }
+
+  .top-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .placeholder {
+    visibility: hidden;
+
+    &:hover {
+      border: none;
+      outline: none;
+    }
+  }
+
+  .close-window-btn {
+    padding: 0.6em 0.6em;
+
+    &:hover {
+      border: none;
     }
   }
 

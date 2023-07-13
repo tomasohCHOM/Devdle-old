@@ -80,6 +80,12 @@
     }, popOverDelay);
   };
 
+  const setContainerOpen = (delay: number | undefined = undefined) => {
+    setTimeout(() => {
+      isContainerOpen = true;
+    }, delay);
+  };
+
   const handleSubmit = (): void => {
     if (
       !(validGuesses.has(currentGuess) || ANSWER_LIST.includes(currentGuess))
@@ -95,6 +101,7 @@
       if (currentGuess === secret.word) {
         gameOverMessage = WIN_MESSAGES[numAttempts];
         triggerPopOver(gameOverMessage, GAME_OVER_ANIMATION_DELAY);
+        setContainerOpen(GAME_OVER_ANIMATION_DELAY + MESSAGE_DURATION);
       } else {
         gameOverMessage = secret.word;
         triggerPopOver(gameOverMessage, GAME_OVER_ANIMATION_DELAY);
@@ -123,7 +130,6 @@
 
   onMount(async () => {
     secret = ANSWERS[Math.floor(Math.random() * ANSWERS.length)];
-    console.log(secret);
   });
 </script>
 
