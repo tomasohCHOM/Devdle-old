@@ -1,9 +1,14 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { ANSWER_LIST, ANSWERS } from "./constants/answersList";
+  import { WIN_MESSAGES } from "./constants/strings";
+  import {
+    GAME_OVER_ANIMATION_DELAY,
+    MESSAGE_DURATION,
+    MESSAGE_FADING_TRANSITION,
+  } from "./constants/values";
   import VALID_GUESSES from "./constants/validGuesses.json";
   import setCharAt from "./constants/utils";
-  import { WIN_MESSAGES } from "./constants/strings";
   import Board from "./components/Board.svelte";
   import KeyBoard from "./components/KeyBoard.svelte";
   import Navbar from "./components/Navbar.svelte";
@@ -57,17 +62,22 @@
     colorsFromGuesses = [...colorsFromGuesses, result];
   };
 
-  const triggerPopOver = (message: string): void => {
-    popOver.textContent = message;
-    popOver.style.visibility = "visible";
-    popOver.style.opacity = "1";
-
+  const triggerPopOver = (
+    message: string,
+    popOverDelay: number | undefined = undefined
+  ): void => {
     setTimeout(() => {
-      popOver.style.opacity = "0";
+      popOver.textContent = message;
+      popOver.style.visibility = "visible";
+      popOver.style.opacity = "1";
+
       setTimeout(() => {
-        popOver.style.visibility = "hidden";
-      }, 250);
-    }, 2000);
+        popOver.style.opacity = "0";
+        setTimeout(() => {
+          popOver.style.visibility = "hidden";
+        }, MESSAGE_FADING_TRANSITION);
+      }, MESSAGE_DURATION);
+    }, popOverDelay);
   };
 
   const handleSubmit = (): void => {
@@ -84,9 +94,12 @@
       isGameOver = true;
       if (currentGuess === secret.word) {
         gameOverMessage = WIN_MESSAGES[numAttempts];
+        triggerPopOver(gameOverMessage, GAME_OVER_ANIMATION_DELAY);
+      } else {
+        gameOverMessage = secret.word;
+        triggerPopOver(gameOverMessage, GAME_OVER_ANIMATION_DELAY);
       }
       currentGuess = "";
-      triggerPopOver(gameOverMessage);
     } else {
       currentGuess = "";
       numAttempts++;
@@ -109,18 +122,13 @@
   window.addEventListener("keydown", handleKeyType);
 
   onMount(async () => {
-    secret = ANSWERS[Math.floor(Math.random() * ANSWER_LIST.length)];
+    secret = ANSWERS[Math.floor(Math.random() * ANSWERS.length)];
     console.log(secret);
   });
 </script>
 
 <main>
   <Navbar />
-
-  <button
-    style="border: 2px solid black;"
-    on:click={() => (isContainerOpen = !isContainerOpen)}>See Answer</button
-  >
 
   <CoverContainer
     title={secret?.word}

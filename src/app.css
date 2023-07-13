@@ -89,7 +89,7 @@ button:hover {
   --color-contrast: #ffffff;
   --border-empty: #878a8c;
   --border-active: #d3d6da;
-  transition: all 0.2s;
+  transition: all 1s;
 }
 
 [data-theme="dark"] .icon-images {

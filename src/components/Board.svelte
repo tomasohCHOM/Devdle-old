@@ -80,7 +80,7 @@
   .correct,
   .present,
   .absent {
-    animation: flipCells 0.5s ease forwards;
+    animation: flipCells 500ms ease forwards;
     animation-delay: calc(var(--order) * 200ms);
   }
   .correct {
