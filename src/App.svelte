@@ -117,7 +117,7 @@
     if (isGameOver) return;
 
     if (event.key === "Backspace") currentGuess = currentGuess.slice(0, -1);
-    if (event.key === "Enter") {
+    else if (event.key === "Enter") {
       currentGuess.length === 5
         ? handleSubmit()
         : triggerPopOver("Not enough letters");

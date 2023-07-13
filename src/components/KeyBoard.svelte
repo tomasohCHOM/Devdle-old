@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { createEventDispatcher } from "svelte";
+
+  const dispatch = createEventDispatcher();
   export let currentGuess: string;
   // export let numAttempts: number;
   // export let isGameOver: boolean;
@@ -8,11 +11,12 @@
   const clickKey = (key: string) => {
     if (key == "<") {
       currentGuess = currentGuess.slice(0, -1);
+      return;
     } else if (key == ">" && currentGuess.length === 5) {
       console.log(key);
-    } else {
-      currentGuess = currentGuess + key.toUpperCase();
     }
+    if (currentGuess.length === 5) return;
+    currentGuess = currentGuess + key.toUpperCase();
   };
 </script>
 
