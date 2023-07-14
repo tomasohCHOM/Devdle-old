@@ -94,25 +94,28 @@ export const ANSWERS = [
   },
   {
     word: "array",
-    description: `Nodes are a basic data structure which contain data and one or more links to other nodes. Nodes can be used to represent a tree structure or a linked list.`,
+    description: `An array is a data structure that holds similar, related data in a sequential order. Each value in an array is often 
+                  referenced by an index or key.`,
     descriptiveImage: "",
     supplementalImage: "",
   },
   {
     word: "stack",
-    description: `Nodes are a basic data structure which contain data and one or more links to other nodes. Nodes can be used to represent a tree structure or a linked list.`,
+    description: `A linear data structure in which the last elements to be placed in the stack (push) are the first ones to be removed (pop).`,
     descriptiveImage: "",
     supplementalImage: "",
   },
   {
     word: "queue",
-    description: `Nodes are a basic data structure which contain data and one or more links to other nodes. Nodes can be used to represent a tree structure or a linked list.`,
+    description: `Similar to the stack data structure, the queue places items in a linear and orderly format. The key difference with the stack
+                  is that the first elements that are inserted are the ones that are removed when pop() is called.`,
     descriptiveImage: "",
     supplementalImage: "",
   },
   {
     word: "const",
-    description: `Nodes are a basic data structure which contain data and one or more links to other nodes. Nodes can be used to represent a tree structure or a linked list.`,
+    description: `'const' (short for constant) is a keyword seen in many programming languages that declares immutable variables. That means,
+                  any variable declared with a 'const' value shall not be modified to any other value.`,
     descriptiveImage: "",
     supplementalImage: "",
   },

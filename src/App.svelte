@@ -3,7 +3,7 @@
   import { ANSWER_LIST, ANSWERS } from "./constants/answersList";
   import { WIN_MESSAGES } from "./constants/strings";
   import {
-    GAME_OVER_ANIMATION_DELAY,
+    WORD_REVEAL_ANIMATION_DELAY,
     MESSAGE_DURATION,
     MESSAGE_FADING_TRANSITION,
   } from "./constants/values";
@@ -100,15 +100,18 @@
       isGameOver = true;
       if (currentGuess === secret.word) {
         gameOverMessage = WIN_MESSAGES[numAttempts];
-        triggerPopOver(gameOverMessage, GAME_OVER_ANIMATION_DELAY);
-        setContainerOpen(GAME_OVER_ANIMATION_DELAY + MESSAGE_DURATION);
       } else {
         gameOverMessage = secret.word;
-        triggerPopOver(gameOverMessage, GAME_OVER_ANIMATION_DELAY);
       }
+      triggerPopOver(gameOverMessage, WORD_REVEAL_ANIMATION_DELAY);
+      setContainerOpen(WORD_REVEAL_ANIMATION_DELAY + MESSAGE_DURATION);
       currentGuess = "";
     } else {
       currentGuess = "";
+      window.removeEventListener("keydown", handleKeyType);
+      setTimeout(() => {
+        window.addEventListener("keydown", handleKeyType);
+      }, WORD_REVEAL_ANIMATION_DELAY);
       numAttempts++;
     }
   };
@@ -151,7 +154,7 @@
     bind:numAttempts
   />
 
-  <KeyBoard bind:currentGuess />
+  <KeyBoard bind:currentGuess {triggerPopOver} {handleSubmit} />
 </main>
 
 <style>

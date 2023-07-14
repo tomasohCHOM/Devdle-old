@@ -5,7 +5,7 @@
   export let numAttempts: number;
 
   const NUM_ROWS = { length: 6 };
-  const cells = { length: 5 };
+  const NUM_CELLS = { length: 5 };
 
   const convertColorsToCSSColorClasses = (i: number, j: number): string => {
     switch (colorsFromGuesses[i][j]) {
@@ -26,7 +26,7 @@
   <section class="board">
     {#each NUM_ROWS as _, i}
       <div class="board-row">
-        {#each cells as _, j}
+        {#each NUM_CELLS as _, j}
           <div
             class="board-cell {guesses[i] !== undefined
               ? convertColorsToCSSColorClasses(i, j)

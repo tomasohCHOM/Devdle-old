@@ -1,22 +1,25 @@
 <script lang="ts">
-  import { createEventDispatcher } from "svelte";
-
-  const dispatch = createEventDispatcher();
   export let currentGuess: string;
-  // export let numAttempts: number;
-  // export let isGameOver: boolean;
-  // export let handleSubmit: () => void;
+  export let triggerPopOver: (
+    message: string,
+    popOverDelay: number | undefined
+  ) => void;
+  export let handleSubmit: () => void;
 
   const keys = ["qwertyuiop", "asdfghjkl", "<zxcvbnm>"];
   const clickKey = (key: string) => {
     if (key == "<") {
       currentGuess = currentGuess.slice(0, -1);
       return;
-    } else if (key == ">" && currentGuess.length === 5) {
-      console.log(key);
+    } else if (key == ">") {
+      currentGuess.length === 5
+        ? handleSubmit()
+        : triggerPopOver("Not enough letters", undefined);
+      return;
     }
     if (currentGuess.length === 5) return;
-    currentGuess = currentGuess + key.toUpperCase();
+    currentGuess = currentGuess + key.toLowerCase();
+    console.log(currentGuess);
   };
 </script>
 
