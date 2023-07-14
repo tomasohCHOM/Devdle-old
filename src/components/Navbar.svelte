@@ -1,5 +1,8 @@
 <script lang="ts">
   import githubLogo from "../assets/images/github-logo.png";
+  import leaderboard from "../assets/images/leaderboard.png";
+  import darkTheme from "../assets/images/dark-theme.png";
+  import help from "../assets/images/help.png";
 
   const toggleTheme = (e): void => {
     if (e.target.checked) {
@@ -15,7 +18,7 @@
 <header class="navbar">
   <section class="navbar-section">
     <a href="https://github.com/tomasohCHOM/Devdle">
-      <img src={githubLogo} alt="hamburger" class="icon-images" />
+      <img src={githubLogo} alt="Githbub Repo Link" class="icon-images" />
     </a>
   </section>
   <section class="navbar-section title-section">
@@ -27,7 +30,16 @@
         <input on:click={toggleTheme} type="checkbox" id="checkbox" />
         <div class="slider round" />
       </label>
-      <div>Leaderboard</div>
+      <div>
+        <img src={help} alt="Help" class="icon-images" />
+      </div>
+      <div>
+        <img src={leaderboard} alt="Leaderboard" class="icon-images" />
+      </div>
+      <div on:click={toggleTheme} on:keydown={toggleTheme}>
+        <img src={darkTheme} alt="Dark Theme Toggle" class="icon-images" />
+      </div>
+      <button class="sign-in">Sign In</button>
     </div>
   </section>
 </header>
@@ -50,6 +62,19 @@
 
         & h1 {
           display: inline-block;
+        }
+      }
+
+      & button {
+        background-color: var(--color-primary);
+        color: var(--color-contrast);
+        border: 2px solid var(--border-active);
+        border-radius: 2rem;
+        transition: all 0.125s ease-in;
+
+        &:hover {
+          background-color: var(--color-contrast);
+          color: var(--color-primary);
         }
       }
     }
@@ -121,7 +146,7 @@
       justify-content: flex-start;
     }
     .lg-header {
-      font-size: 2.4em;
+      font-size: 2.2em;
     }
   }
 </style>
