@@ -19,7 +19,6 @@
     }
     if (currentGuess.length === 5) return;
     currentGuess = currentGuess + key.toLowerCase();
-    console.log(currentGuess);
   };
 </script>
 
