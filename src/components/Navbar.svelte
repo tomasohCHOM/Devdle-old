@@ -1,9 +1,9 @@
 <script lang="ts">
   import { writable } from "svelte/store";
-  import githubLogo from "../assets/images/github-logo.png";
-  import leaderboard from "../assets/images/leaderboard.png";
-  import darkTheme from "../assets/images/dark-theme.png";
-  import help from "../assets/images/help.png";
+  import githubLogo from "../assets/icons/github-logo.png";
+  import leaderboard from "../assets/icons/leaderboard.png";
+  import darkTheme from "../assets/icons/dark-theme.png";
+  import help from "../assets/icons/help.png";
 
   const toggleTheme = (): void => {
     const element: HTMLElement = document.documentElement;

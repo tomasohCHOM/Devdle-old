@@ -1,9 +1,7 @@
 <script lang="ts">
-  import closeWindow from "../assets/images/close-window.png";
+  import closeWindow from "../assets/icons/close-window.png";
 
   export let title: string = "Error: Failed to load secret word.";
-  export let description: string = "Error: Failed to load description.";
-
   export let isOpen: boolean;
 
   const toggleContainer = () => {
@@ -21,7 +19,8 @@
       ><img class="icon-images" src={closeWindow} alt="Close Window" /></button
     >
   </div>
-  <p>{description}</p>
+  <slot name="word-definition" />
+  <slot />
 </section>
 
 <div
@@ -35,7 +34,7 @@
     position: fixed;
     left: 50%;
     top: 55%;
-    width: 30em;
+    width: min(30em, 85vw);
     z-index: 4;
     padding: 1.25rem;
     background-color: var(--cover-container-color);

@@ -13,14 +13,14 @@
   import KeyBoard from "./components/KeyBoard.svelte";
   import Navbar from "./components/Navbar.svelte";
   import CoverContainer from "./components/CoverContainer.svelte";
+  import WordCard from "./components/WordCard.svelte";
 
   const validGuesses = new Set<string>(VALID_GUESSES);
 
   interface Secret {
     word: string;
     description: string;
-    descriptiveImage: string;
-    supplementalImage: string;
+    supplementalImageLink: string;
   }
 
   let secret: Secret;
@@ -139,11 +139,7 @@
 <main>
   <Navbar />
 
-  <CoverContainer
-    title={secret?.word}
-    description={secret?.description}
-    bind:isOpen={isContainerOpen}
-  />
+  <WordCard bind:secret bind:isOpen={isContainerOpen} />
 
   <div bind:this={popOver} class="pop-over" />
 
