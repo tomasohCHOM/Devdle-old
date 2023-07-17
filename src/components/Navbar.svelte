@@ -1,16 +1,18 @@
 <script lang="ts">
+  import { writable } from "svelte/store";
   import githubLogo from "../assets/images/github-logo.png";
   import leaderboard from "../assets/images/leaderboard.png";
   import darkTheme from "../assets/images/dark-theme.png";
   import help from "../assets/images/help.png";
 
-  const toggleTheme = (e): void => {
-    if (e.target.checked) {
-      document.documentElement.setAttribute("data-theme", "dark");
-      localStorage.setItem("theme", "dark"); //add this
+  const toggleTheme = (): void => {
+    const element: HTMLElement = document.documentElement;
+    if (element.getAttribute("data-theme") === "dark") {
+      element.setAttribute("data-theme", "light");
+      localStorage.setItem("theme", "light");
     } else {
-      document.documentElement.setAttribute("data-theme", "light");
-      localStorage.setItem("theme", "light"); //add this
+      element.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
     }
   };
 </script>
@@ -25,22 +27,16 @@
     <h1 class="lg-header">DEVDLE</h1>
   </section>
   <section class="navbar-section">
-    <div class="theme-switch-wrapper">
-      <label class="theme-switch" for="checkbox">
-        <input on:click={toggleTheme} type="checkbox" id="checkbox" />
-        <div class="slider round" />
-      </label>
-      <div>
-        <img src={help} alt="Help" class="icon-images" />
-      </div>
-      <div>
-        <img src={leaderboard} alt="Leaderboard" class="icon-images" />
-      </div>
-      <div on:click={toggleTheme} on:keydown={toggleTheme}>
-        <img src={darkTheme} alt="Dark Theme Toggle" class="icon-images" />
-      </div>
-      <button class="sign-in">Sign In</button>
+    <div>
+      <img src={help} alt="Help" class="icon-images" />
     </div>
+    <div>
+      <img src={leaderboard} alt="Leaderboard" class="icon-images" />
+    </div>
+    <div on:click={toggleTheme} on:keydown={toggleTheme}>
+      <img src={darkTheme} alt="Dark Theme Toggle" class="icon-images" />
+    </div>
+    <button class="sign-in">Sign In</button>
   </section>
 </header>
 
@@ -57,7 +53,6 @@
     .navbar-section {
       flex: 1;
       &.title-section {
-        flex: 2;
         justify-content: center;
 
         & h1 {
@@ -80,10 +75,12 @@
     }
     & :first-child {
       display: flex;
+      align-items: center;
       justify-content: flex-start;
     }
     & :last-child {
       display: flex;
+      align-items: center;
       justify-content: flex-end;
       gap: 1rem;
     }
@@ -94,59 +91,37 @@
     font-family: var(--ff-custom);
     letter-spacing: -0.125rem;
   }
-  .theme-switch-wrapper {
-    display: flex;
-    align-items: center;
-  }
-  .theme-switch {
-    display: inline-block;
-    height: 34px;
-    position: relative;
-    width: 60px;
-    &:input {
-      display: none;
-    }
-  }
-  .slider {
-    background-color: #ccc;
-    bottom: 0;
-    cursor: pointer;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: 0.4s;
-  }
-  .slider:before {
-    background-color: #fff;
-    bottom: 4px;
-    content: "";
-    height: 26px;
-    left: 4px;
-    position: absolute;
-    transition: 0.4s;
-    width: 26px;
-  }
-  input:checked + .slider {
-    background-color: #66bb6a;
-  }
 
-  input:checked + .slider:before {
-    transform: translateX(26px);
-  }
-  .slider.round {
-    border-radius: 34px;
-  }
-  .slider.round:before {
-    border-radius: 50%;
-  }
-  @media screen and (max-width: 45em) {
-    .title-section {
-      display: flex;
-      justify-content: flex-start;
+  @media screen and (max-width: 48em) {
+    .navbar {
+      padding: 0 0.5rem;
+
+      & :first-child {
+        flex: 0.5;
+        flex-grow: 0;
+      }
     }
+
+    .navbar-section {
+      &.title-section {
+        flex: 2;
+        justify-content: flex-start;
+      }
+    }
+
     .lg-header {
       font-size: 2.2em;
+    }
+
+    .navbar {
+      & :last-child {
+        gap: 0.5rem;
+
+        & button {
+          font-size: 0.75rem;
+          border-radius: 0.75rem;
+        }
+      }
     }
   }
 </style>

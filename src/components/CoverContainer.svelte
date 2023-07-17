@@ -38,7 +38,7 @@
     width: 30em;
     z-index: 4;
     padding: 1.25rem;
-    background-color: var(--color-secondary);
+    background-color: var(--cover-container-color);
     box-shadow: 0 3px 1rem rgba(16, 19, 21, 0.1);
     border-radius: 1rem;
     opacity: 0;
@@ -78,6 +78,7 @@
 
   .close-window-btn {
     padding: 0.6em 0.6em;
+    background-color: var(--cover-container-color);
 
     &:hover {
       border: none;

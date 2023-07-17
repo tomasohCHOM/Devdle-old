@@ -23,9 +23,10 @@
   --color-absent: #787c7e;
 
   --color-primary: #ffffff;
-  --color-secondary: #fefefe;
+  --color-secondary: #e5e5e5;
   --color-contrast: #393939;
   --color-true-white: #ffffff;
+  --cover-container-color: #f3f3f3;
 
   --border-empty: #d3d6da;
   --border-pop: #aba9a9;
@@ -82,19 +83,21 @@ button {
 
 [data-theme="light"] {
   --color-primary: #ffffff;
-  --color-secondary: #fefefe;
+  --color-secondary: #e9e9e9;
   --color-contrast: #393939;
   --border-empty: #d3d6da;
   --border-active: #878a8c;
+  --cover-container-color: #f3f3f3;
   transition: all 0.15s ease-in;
 }
 
 [data-theme="dark"] {
   --color-primary: #393939;
   --color-secondary: #4e4e4e;
-  --color-contrast: #ffffff;
+  --color-contrast: #e5e5e5;
   --border-empty: #878a8c;
   --border-active: #d3d6da;
+  --cover-container-color: var(--color-secondary);
   transition: all 0.15s ease-in;
 }
 
@@ -103,7 +106,7 @@ button {
   -webkit-filter: brightness(0) invert(1);
 }
 
-@media screen and (max-width: 45em) {
+@media screen and (max-width: 48em) {
   .icon-images {
     width: 1.5rem;
     height: 1.5rem;

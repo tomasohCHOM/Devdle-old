@@ -47,7 +47,8 @@
 
 <style>
   .keyboard-key {
-    background-color: #e9e9e9;
+    background-color: var(--color-secondary);
+    color: var(--color-contrast);
     margin: 0.125rem;
   }
   @media screen and (max-width: 36em) {
