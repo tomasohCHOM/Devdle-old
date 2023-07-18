@@ -17,7 +17,7 @@
   </div>
   <img
     class="supplemental-image"
-    src="/images/{secret?.word}.png"
+    src={secret?.supplementalImageLink}
     alt="Supplemental Image for {secret?.word}"
   />
 </CoverContainer>
