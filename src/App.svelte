@@ -133,6 +133,8 @@
 
   onMount(async () => {
     secret = ANSWERS[Math.floor(Math.random() * ANSWERS.length)];
+    localStorage.getItem("theme") === "dark" &&
+      document.documentElement.setAttribute("data-theme", "dark");
   });
 </script>
 
@@ -150,7 +152,13 @@
     bind:numAttempts
   />
 
-  <KeyBoard bind:currentGuess {triggerPopOver} {handleSubmit} />
+  <KeyBoard
+    bind:currentGuess
+    bind:guesses
+    answer={secret?.word}
+    {triggerPopOver}
+    {handleSubmit}
+  />
 </main>
 
 <style>

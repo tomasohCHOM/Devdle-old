@@ -1,10 +1,25 @@
 <script lang="ts">
   export let currentGuess: string;
+  export let guesses: string[];
+  export let answer: string;
   export let triggerPopOver: (
     message: string,
     popOverDelay: number | undefined
   ) => void;
   export let handleSubmit: () => void;
+
+  const getKeyColor = (letter: string) => {
+    for (const guess of guesses) {
+      if (guess.includes(letter)) {
+        console.log(guess);
+        for (let i = 0; i < guess.length; i++) {
+          if (guess[i] === letter && guess[i] === answer[i]) {
+            return "correct";
+          }
+        }
+      }
+    }
+  };
 
   const keys = ["qwertyuiop", "asdfghjkl", "<zxcvbnm>"];
   const clickKey = (key: string) => {
@@ -28,7 +43,7 @@
     <div class="row">
       {#each key as letter}
         <button
-          class="keyboard-key"
+          class="keyboard-key {getKeyColor(letter)}"
           on:click={() => {
             clickKey(letter);
           }}
@@ -46,11 +61,31 @@
 </main>
 
 <style>
+  main {
+    padding-block-end: 2rem;
+  }
+
   .keyboard-key {
     background-color: var(--color-secondary);
     color: var(--color-contrast);
     margin: 0.125rem;
   }
+
+  .correct {
+    --background-color: var(--color-correct);
+    --color: var(--color-true-white);
+  }
+
+  .present {
+    --background-color: var(--color-present);
+    --color: var(--color-true-white);
+  }
+
+  .absent {
+    --background-color: var(--color-absent);
+    --color: var(--color-true-white);
+  }
+
   @media screen and (max-width: 36em) {
     .keyboard-key {
       padding: 0.3em 0.6em;
