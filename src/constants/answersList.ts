@@ -175,113 +175,126 @@ export const ANSWERS = [
   },
   {
     word: "cache",
-    description: ``,
-    supplementalImageLink: "",
+    description: `The process of storing data in a temporary storage area that facilitates faster access to data with the goal 
+                  of improving application and system performance.`,
+    supplementalImageLink: "/images/cache.png",
   },
   {
     word: "style",
-    description: ``,
-    supplementalImageLink: "",
+    description: `Though the term itself has many meanings, it is commonly associated with the 'styling' of a website, how appealing
+                  the UI of a webpage can be. Programmers use Cascading Style Sheets (CSS) to style the contents of regular HTML files.`,
+    supplementalImageLink: "/images/style.png",
   },
   {
     word: "print",
-    description: ``,
-    supplementalImageLink: "",
+    description: `One of the most basic commands that a programming language can do to a computer. The 'print' statement is used to 
+                  display content on the terminal whether by using raw temporary values (e.g "Hello") or variables (e.g. a variable 
+                  'my_name' that stores "John").`,
+    supplementalImageLink: "/images/print.png",
   },
   {
     word: "graph",
-    description: ``,
-    supplementalImageLink: "",
+    description: `A non-linear data structure used to represent complex relationships among objects. It consists of vertices (or nodes), 
+                  which represent objects in a graph, and edges, the links or relationships that connect nodes together.`,
+    supplementalImageLink: "/images/graph.png",
   },
   {
     word: "index",
-    description: ``,
-    supplementalImageLink: "",
+    description: `An index is a resource that allows to retrieve values from data structures, such as arrays, in a fast and predictable
+                  manner. For instance, programmers can look at the first element of an array by referencing the 0-index (or, rarely, 1-index).`,
+    supplementalImageLink: "/images/index.png",
   },
   {
     word: "class",
-    description: ``,
-    supplementalImageLink: "",
+    description: `In object-oriented programming, a class is a template definition of the methods and variables in a particular kind of object.`,
+    supplementalImageLink: "/images/class.png",
   },
   {
     word: "scope",
-    description: ``,
-    supplementalImageLink: "",
+    description: `A concept that refers to where values and functions can be accessed. Variables with a global scope can usually be accessed 
+                  from anywhere in an application, whereas locally-scoped objects can only be accessed within a certain range.`,
+    supplementalImageLink: "/images/scope.png",
   },
   {
     word: "space",
-    description: ``,
-    supplementalImageLink: "",
+    description: `Usually referred to as the amount of memory consumed by a program or a specific algorithm in said program.`,
+    supplementalImageLink: "/images/space.jpg",
   },
   {
     word: "input",
-    description: ``,
-    supplementalImageLink: "",
+    description: `Any information that is sent to a computer for processing. Based on the input that a user gives, a computer may send 
+                  a different set of data.`,
+    supplementalImageLink: "/images/input.png",
   },
   {
     word: "local",
-    description: ``,
-    supplementalImageLink: "",
+    description: `In terms of scope, a variable defined in local scope can only be accessed within that specific scope. It cannot be 
+                  read or mutated beyond where it is defined.`,
+    supplementalImageLink: "/images/local.png",
   },
   {
-    word: "block",
-    description: ``,
-    supplementalImageLink: "",
+    word: "error",
+    description: `An error describes any issue that arises unexpectedly that cause a computer to not function properly.`,
+    supplementalImageLink: "/images/error.jpg",
   },
   {
     word: "route",
-    description: ``,
-    supplementalImageLink: "",
+    description: `A route defines a path for sending packets through the Internet network to an address on another network. In web
+                  development, routes usually describe the division of an application's UI based on the rules defined in the URL schema.`,
+    supplementalImageLink: "/images/route.png",
   },
   {
     word: "linux",
-    description: ``,
-    supplementalImageLink: "",
+    description: `An open-source Unix-like operating system released on September 17, 1991, by Linus Torvalds. Its versatility, flexibility,
+                  and customizable nature makes it one of the most reliable operating systems among technical users.`,
+    supplementalImageLink: "/images/linux.png",
   },
   {
     word: "event",
-    description: ``,
-    supplementalImageLink: "",
+    description: `An action or occurrence recongized by a software, often originating asynchronously from the external environment, that may 
+                  be handled by the software itself. An example of how an event can be used is to recogize whenever a user clicks a button on 
+                  a webpage and display an information box.`,
+    supplementalImageLink: "/images/event.jpg",
   },
   {
     word: "cloud",
-    description: ``,
-    supplementalImageLink: "",
+    description: `Cloud computing is the delivery of computing services — including servers, storage, databases, networking, software, analytics, 
+                  and intelligence—over the internet (“the cloud”) to offer faster innovation, flexible resources, and economies of scale.`,
+    supplementalImageLink: "/images/cloud.webp",
   },
   {
     word: "loops",
-    description: ``,
-    supplementalImageLink: "",
-  },
-  {
-    word: "child",
-    description: ``,
-    supplementalImageLink: "",
+    description: `A sequence of instructions that is continually repeated until a certain condition is reached. Most programming languages
+                  have keywords like while and for to create these loops.`,
+    supplementalImageLink: "/images/loops/jpg",
   },
   {
     word: "unity",
-    description: ``,
-    supplementalImageLink: "",
+    description: `A cross-platform game engine that allows developers to build games using languages like C#.`,
+    supplementalImageLink: "/images/unity.png",
   },
   {
     word: "logic",
-    description: ``,
-    supplementalImageLink: "",
+    description: `A set of principles that delineates how elements should be arranged so a computer can perform specific tasks.`,
+    supplementalImageLink: "/images/logic.png",
   },
   {
     word: "trees",
-    description: ``,
-    supplementalImageLink: "",
+    description: `A connected, undirected graph with no cycles used to represent hierarchical data. This data structure often contains
+                  the root node (the highest node in the hierarchy), and leaf nodes (the lowest node(s) in the hierarchy).`,
+    supplementalImageLink: "/images/trees.png",
   },
   {
     word: "asset",
-    description: ``,
-    supplementalImageLink: "",
+    description: `In terms of web design and development, 'assets' typically refer to the text content, graphics, 
+                  photographs, videos, audio files, and databases of a web page.`,
+    supplementalImageLink: "/images/assets.jpg",
   },
   {
     word: "param",
-    description: ``,
-    supplementalImageLink: "",
+    description: `A parameter is a special kind of variable used in a function to refer to one of the pieces 
+                  of data provided as input to the function.`,
+    supplementalImageLink: "/images/param.jpg",
   },
   {
     word: "mysql",

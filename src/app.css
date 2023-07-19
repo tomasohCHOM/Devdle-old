@@ -88,7 +88,7 @@ button {
   --border-empty: #d3d6da;
   --border-active: #878a8c;
   --cover-container-color: #f3f3f3;
-  transition: all 0.15s ease-in;
+  /* transition: all 0.15s ease-in; */
 }
 
 [data-theme="dark"] {
@@ -98,7 +98,7 @@ button {
   --border-empty: #878a8c;
   --border-active: #d3d6da;
   --cover-container-color: var(--color-secondary);
-  transition: all 0.15s ease-in;
+  /* transition: all 0.15s ease-in; */
 }
 
 [data-theme="dark"] .icon-images {
