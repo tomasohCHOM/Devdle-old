@@ -43,7 +43,7 @@
     <div class="row">
       {#each key as letter}
         <button
-          class="keyboard-key {getKeyColor(letter)}"
+          class="keyboard-key {getKeyColor(letter)} .disable-double-tap-zoom"
           on:click={() => {
             clickKey(letter);
           }}

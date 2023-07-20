@@ -106,6 +106,10 @@ button {
   -webkit-filter: brightness(0) invert(1);
 }
 
+.disable-double-tap-zoom {
+  touch-action: manipulation;
+}
+
 @media screen and (max-width: 48em) {
   .icon-images {
     width: 1.5rem;
