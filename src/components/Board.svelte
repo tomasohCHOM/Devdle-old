@@ -30,9 +30,9 @@
           <div
             class="board-cell {guesses[i] !== undefined
               ? convertColorsToCSSColorClasses(i, j)
-              : ''} {i === guesses.length &&
-              currentGuess[j] !== undefined &&
-              'border-active'}"
+              : ''} {i === guesses.length && currentGuess[j] !== undefined
+              ? 'border-active'
+              : ''}"
             style="--order: {j}"
           >
             {#if i === numAttempts && currentGuess.length - 1 >= j}
