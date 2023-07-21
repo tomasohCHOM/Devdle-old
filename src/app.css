@@ -110,7 +110,7 @@ button {
   touch-action: manipulation;
 }
 
-@media screen and (max-width: 48em) {
+@media screen and (max-width: 50em) {
   .icon-images {
     width: 1.5rem;
     height: 1.5rem;

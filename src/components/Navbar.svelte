@@ -47,6 +47,7 @@
     justify-content: flex-start;
     flex-wrap: nowrap;
     align-items: center;
+    gap: 1rem;
     border-bottom: 2px solid var(--border-active);
     padding: 0rem 1.25rem;
     margin-block-end: 2rem;
@@ -92,36 +93,49 @@
     letter-spacing: -0.125rem;
   }
 
-  @media screen and (max-width: 48em) {
+  @media screen and (max-width: 50em) {
     .navbar {
       padding: 0 0.5rem;
 
       & :first-child {
         flex: 0.5;
-        flex-grow: 0;
+        flex: 0;
+      }
+
+      & :last-child {
+        flex: 2;
+        flex-grow: 1;
+        gap: 0.5rem;
+
+        & button {
+          max-width: fit-content;
+          display: inline-flex;
+          align-self: start;
+        }
       }
     }
 
     .navbar-section {
       &.title-section {
-        flex: 2;
+        flex: 1;
         justify-content: flex-start;
+      }
+    }
+  }
+
+  @media screen and (max-width: 30em) {
+    .navbar {
+      & :last-child {
+        & button {
+          padding: 0.25rem 0.5rem;
+          font-size: 0.875rem;
+          border-radius: 0.75rem;
+        }
       }
     }
 
     .lg-header {
       font-size: 2.2em;
-    }
-
-    .navbar {
-      & :last-child {
-        gap: 0.5rem;
-
-        & button {
-          font-size: 0.75rem;
-          border-radius: 0.75rem;
-        }
-      }
     }
   }
 </style>

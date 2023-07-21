@@ -88,7 +88,7 @@
 
   @media screen and (max-width: 36em) {
     .keyboard-key {
-      padding: 0.3em 0.6em;
+      padding: 0.2em 0.4em;
       font-size: 1rem;
     }
   }

@@ -139,7 +139,7 @@
   }
   @media screen and (max-width: 36em) {
     .board-cell {
-      width: 2.5rem;
+      width: 3rem;
     }
   }
 </style>
