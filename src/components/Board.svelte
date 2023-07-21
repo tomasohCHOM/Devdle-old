@@ -3,6 +3,7 @@
   export let colorsFromGuesses: string[];
   export let currentGuess: string;
   export let numAttempts: number;
+  export let isError: boolean;
 
   const NUM_ROWS = { length: 6 };
   const NUM_CELLS = { length: 5 };
@@ -32,7 +33,7 @@
               ? convertColorsToCSSColorClasses(i, j)
               : ''} {i === guesses.length && currentGuess[j] !== undefined
               ? 'border-active'
-              : ''}"
+              : ''} {i === guesses.length && isError === true ? 'shake' : ''}"
             style="--order: {j}"
           >
             {#if i === numAttempts && currentGuess.length - 1 >= j}
@@ -47,7 +48,7 @@
   </section>
 </main>
 
-<style>
+<style lang="scss">
   .board-row {
     display: flex;
     align-items: center;
@@ -72,31 +73,39 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-  }
-  .border-active {
-    border: 2px solid var(--border-active);
-    animation: cellPopUp 0.1s ease-in-out;
-  }
-  .correct,
-  .present,
-  .absent {
-    animation: flipCells 500ms ease forwards;
-    animation-delay: calc(var(--order) * 200ms);
-  }
-  .correct {
-    --background-color: var(--color-correct);
-    --color: var(--color-true-white);
-    border: 2px solid var(--border-active);
-  }
-  .present {
-    --background-color: var(--color-present);
-    --color: var(--color-true-white);
-    border: 2px solid var(--border-active);
-  }
-  .absent {
-    --background-color: var(--color-absent);
-    --color: var(--color-true-white);
-    border: 2px solid var(--border-active);
+
+    &.shake {
+      animation: shakeCells 200ms;
+    }
+
+    &.border-active {
+      border: 2px solid var(--border-active);
+      animation: cellPopUp 0.1s ease-in-out;
+    }
+    &.correct,
+    &.present,
+    &.absent {
+      animation: flipCells 500ms ease forwards;
+      animation-delay: calc(var(--order) * 200ms);
+    }
+
+    &.correct {
+      --background-color: var(--color-correct);
+      --color: var(--color-true-white);
+      border: 2px solid var(--border-active);
+    }
+
+    &.present {
+      --background-color: var(--color-present);
+      --color: var(--color-true-white);
+      border: 2px solid var(--border-active);
+    }
+
+    &.absent {
+      --background-color: var(--color-absent);
+      --color: var(--color-true-white);
+      border: 2px solid var(--border-active);
+    }
   }
   @keyframes cellPopUp {
     0% {
@@ -135,6 +144,28 @@
       background-color: var(--background-color);
       color: var(--color);
       border: none;
+    }
+  }
+  @keyframes shakeCells {
+    10%,
+    90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+      transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+      transform: translate3d(4px, 0, 0);
     }
   }
   @media screen and (max-width: 36em) {

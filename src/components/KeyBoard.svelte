@@ -2,10 +2,6 @@
   export let currentGuess: string;
   export let guesses: string[];
   export let answer: string;
-  export let triggerPopOver: (
-    message: string,
-    popOverDelay: number | undefined
-  ) => void;
   export let handleSubmit: () => void;
 
   const getKeyColor = (letter: string) => {
@@ -27,9 +23,7 @@
       currentGuess = currentGuess.slice(0, -1);
       return;
     } else if (key == ">") {
-      currentGuess.length === 5
-        ? handleSubmit()
-        : triggerPopOver("Not enough letters", undefined);
+      handleSubmit();
       return;
     }
     if (currentGuess.length === 5) return;

@@ -31,6 +31,7 @@
   let isGameOver: boolean = false;
   let gameOverMessage: string = "";
 
+  $: isError = false;
   $: isContainerOpen = false;
   let popOver: HTMLDivElement;
 
@@ -87,9 +88,17 @@
   };
 
   const handleSubmit = (): void => {
+    if (currentGuess.length !== 5) {
+      isError = true;
+      setTimeout(() => (isError = false), 1000);
+      triggerPopOver("Not enough letters");
+      return;
+    }
     if (
       !(validGuesses.has(currentGuess) || ANSWER_LIST.includes(currentGuess))
     ) {
+      isError = true;
+      setTimeout(() => (isError = false), 1000);
       triggerPopOver("Not a valid word");
       return;
     }
@@ -118,13 +127,8 @@
 
   const handleKeyType = (event: KeyboardEvent) => {
     if (isGameOver) return;
-
     if (event.key === "Backspace") currentGuess = currentGuess.slice(0, -1);
-    else if (event.key === "Enter") {
-      currentGuess.length === 5
-        ? handleSubmit()
-        : triggerPopOver("Not enough letters");
-    }
+    else if (event.key === "Enter") handleSubmit();
     if (currentGuess.length === 5) return;
     if (event.key >= "a" && event.key <= "z") currentGuess += event.key;
   };
@@ -150,13 +154,13 @@
     bind:colorsFromGuesses
     bind:currentGuess
     bind:numAttempts
+    bind:isError
   />
 
   <KeyBoard
     bind:currentGuess
     bind:guesses
     answer={secret?.word}
-    {triggerPopOver}
     {handleSubmit}
   />
 </main>
