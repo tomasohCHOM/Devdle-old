@@ -12,7 +12,7 @@
   import Board from "./components/Board.svelte";
   import KeyBoard from "./components/KeyBoard.svelte";
   import Navbar from "./components/Navbar.svelte";
-  import CoverContainer from "./components/CoverContainer.svelte";
+  import Help from "./components/Help.svelte";
   import WordCard from "./components/WordCard.svelte";
 
   const validGuesses = new Set<string>(VALID_GUESSES);
@@ -32,7 +32,8 @@
   let isError: boolean = false;
   let gameOverMessage: string = "";
 
-  $: isContainerOpen = false;
+  $: isWordCardOpen = false;
+  $: isHelpOpen = false;
   let popOver: HTMLDivElement;
 
   const getColorsFromGuess = (
@@ -83,7 +84,7 @@
 
   const setContainerOpen = (delay: number | undefined = undefined) => {
     setTimeout(() => {
-      isContainerOpen = true;
+      isWordCardOpen = true;
     }, delay);
   };
 
@@ -143,9 +144,10 @@
 </script>
 
 <main>
-  <Navbar />
+  <Navbar bind:isContainerOpen={isHelpOpen} />
 
-  <WordCard bind:secret bind:isOpen={isContainerOpen} />
+  <Help bind:isOpen={isHelpOpen} />
+  <WordCard bind:secret bind:isOpen={isWordCardOpen} />
 
   <div bind:this={popOver} class="pop-over" />
 

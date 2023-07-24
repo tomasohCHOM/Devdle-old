@@ -5,6 +5,13 @@
   import darkTheme from "../assets/icons/dark-theme.png";
   import help from "../assets/icons/help.png";
 
+  export let isContainerOpen: boolean;
+
+  const toggleContainer = (): void => {
+    isContainerOpen = !isContainerOpen;
+    console.log(isContainerOpen);
+  };
+
   const toggleTheme = (): void => {
     const element: HTMLElement = document.documentElement;
     if (element.getAttribute("data-theme") === "dark") {
@@ -27,7 +34,7 @@
     <h1 class="lg-header">DEVDLE</h1>
   </section>
   <section class="navbar-section">
-    <div>
+    <div on:click={toggleContainer} on:keydown={toggleContainer}>
       <img src={help} alt="Help" class="icon-images" />
     </div>
     <div>

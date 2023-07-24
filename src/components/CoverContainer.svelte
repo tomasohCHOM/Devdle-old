@@ -5,6 +5,7 @@
   export let isOpen: boolean;
 
   const toggleContainer = () => {
+    console.log(isOpen);
     isOpen = !isOpen;
   };
 </script>
@@ -19,6 +20,7 @@
       ><img class="icon-images" src={closeWindow} alt="Close Window" /></button
     >
   </div>
+  <slot name="sub-header" />
   <slot name="word-definition" />
   <slot />
 </section>
