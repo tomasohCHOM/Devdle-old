@@ -29,9 +29,9 @@
   let currentGuess: string = "";
   let numAttempts: number = 0;
   let isGameOver: boolean = false;
+  let isError: boolean = false;
   let gameOverMessage: string = "";
 
-  $: isError = false;
   $: isContainerOpen = false;
   let popOver: HTMLDivElement;
 
@@ -90,7 +90,7 @@
   const handleSubmit = (): void => {
     if (currentGuess.length !== 5) {
       isError = true;
-      setTimeout(() => (isError = false), 1000);
+      setTimeout(() => (isError = false), 250);
       triggerPopOver("Not enough letters");
       return;
     }
@@ -98,7 +98,7 @@
       !(validGuesses.has(currentGuess) || ANSWER_LIST.includes(currentGuess))
     ) {
       isError = true;
-      setTimeout(() => (isError = false), 1000);
+      setTimeout(() => (isError = false), 250);
       triggerPopOver("Not a valid word");
       return;
     }

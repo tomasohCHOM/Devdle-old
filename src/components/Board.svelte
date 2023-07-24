@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { WORD_REVEAL_ANIMATION_DELAY } from "../constants/values";
+
   export let guesses: string[];
   export let colorsFromGuesses: string[];
   export let currentGuess: string;
@@ -34,7 +36,7 @@
               : ''} {i === guesses.length && currentGuess[j] !== undefined
               ? 'border-active'
               : ''} {i === guesses.length && isError === true ? 'shake' : ''}"
-            style="--order: {j}"
+            style="--order: {j}; --win-delay: {WORD_REVEAL_ANIMATION_DELAY}"
           >
             {#if i === numAttempts && currentGuess.length - 1 >= j}
               {currentGuess[j].toUpperCase()}
@@ -74,13 +76,10 @@
     -ms-user-select: none;
     user-select: none;
 
-    &.shake {
-      animation: shakeCells 200ms;
-    }
-
     &.border-active {
       border: 2px solid var(--border-active);
       animation: cellPopUp 0.1s ease-in-out;
+      animation-iteration-count: 1;
     }
     &.correct,
     &.present,
@@ -105,6 +104,15 @@
       --background-color: var(--color-absent);
       --color: var(--color-true-white);
       border: 2px solid var(--border-active);
+    }
+
+    &.shake {
+      animation: shakeCells 200ms;
+    }
+
+    &.win {
+      animation: winAnimation 300ms;
+      animation-delay: calc(var(--win-delay) * 1ms + var(--order) * 100ms);
     }
   }
   @keyframes cellPopUp {
@@ -149,25 +157,48 @@
   @keyframes shakeCells {
     10%,
     90% {
-      transform: translate3d(-1px, 0, 0);
+      transform: translate(-1px, 0);
     }
 
     20%,
     80% {
-      transform: translate3d(2px, 0, 0);
+      transform: translate(2px, 0);
     }
 
     30%,
     50%,
     70% {
-      transform: translate3d(-4px, 0, 0);
+      transform: translate(-4px, 0);
     }
 
     40%,
     60% {
-      transform: translate3d(4px, 0, 0);
+      transform: translate(4px, 0);
     }
   }
+
+  @keyframes winAnimation {
+    0% {
+      transform: translate(0, 0);
+    }
+
+    25% {
+      transform: translate(0, 0.5rem);
+    }
+
+    50% {
+      transform: translate(0, -0.125rem);
+    }
+
+    75% {
+      transform: translate(0, 0.25rem);
+    }
+
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+
   @media screen and (max-width: 36em) {
     .board-cell {
       width: 3rem;

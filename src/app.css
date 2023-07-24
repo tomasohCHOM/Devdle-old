@@ -107,7 +107,7 @@ button {
 }
 
 .disable-double-tap-zoom {
-  touch-action: manipulation;
+  touch-action: none;
 }
 
 @media screen and (max-width: 50em) {
