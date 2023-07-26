@@ -11,7 +11,7 @@
   export let secret: Secret;
 </script>
 
-<CoverContainer {isOpen} title={secret?.word}>
+<CoverContainer bind:isOpen title={secret?.word}>
   <div slot="word-definition">
     {secret?.description}
   </div>

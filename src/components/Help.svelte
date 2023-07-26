@@ -6,7 +6,7 @@
   let exampleIndex: number = 0;
 </script>
 
-<CoverContainer {isOpen} title="How to Play">
+<CoverContainer bind:isOpen title="How to Play">
   <h2 class="sub-header" slot="sub-header">
     <strong>Guess the Devdle in 6 tries.</strong>
   </h2>
